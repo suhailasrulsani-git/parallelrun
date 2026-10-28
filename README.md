@@ -4,6 +4,8 @@
 
 It's a single C# file that you compile on your own machine with `Add-Type`. There's nothing to install and no internet needed.
 
+**Watch the demo (2:15, sound on): https://suhailasrulsani-git.github.io/parallelrun/ParallelRun-demo.mp4**
+
 ```powershell
 1..100 | Invoke-ParallelRun { Test-Connection $_ -Count 1 -Quiet } -MaxThreads 8
 ```
