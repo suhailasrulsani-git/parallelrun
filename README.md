@@ -2,11 +2,18 @@
 
 `Invoke-ParallelRun` runs a script block for many items at the same time, in Windows PowerShell 5.1.
 
-It's a single C# file that you compile on your own machine with `Add-Type`. There's nothing to install and no internet needed.
+It's a single C# file. Install it from the PowerShell Gallery, or compile it on your own machine with `Add-Type` (no internet needed).
 
 **Watch the demo (2:15, sound on): https://suhailasrulsani-git.github.io/parallelrun/ParallelRun-demo.mp4**
 
+## Install
+
+It's on the PowerShell Gallery as **PSParallelRun**: https://www.powershellgallery.com/packages/PSParallelRun
+
 ```powershell
+Install-Module PSParallelRun -Scope CurrentUser
+Import-Module PSParallelRun
+
 1..100 | Invoke-ParallelRun { Test-Connection $_ -Count 1 -Quiet } -MaxThreads 8
 ```
 
@@ -26,7 +33,7 @@ The idea is the same as santhse's Invoke-All. ParallelRun was written from scrat
 - Windows PowerShell 5.1
 - FullLanguage mode (`Add-Type` is blocked in Constrained Language Mode)
 
-## Build and load
+## Or build it yourself
 
 Run this in a **new** PowerShell window. Once a window loads the DLL, the file stays locked until that window closes.
 
@@ -87,3 +94,7 @@ powershell -ExecutionPolicy Bypass -File .\Test-ParallelRunSoak.ps1         # ~1
 ```
 
 Both test scripts build the DLL into a temp folder, so the DLL here is never locked. They run locally only.
+
+## License
+
+MIT - see [LICENSE](LICENSE).
